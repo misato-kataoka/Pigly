@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/register/step1', [ContactController::class, 'index']);
+Route::get('/register/step2', [ContactController::class, 'create']);
+Route::post('/weight_logs', [ContactController::class, 'register']);
+Route::get('/login', [ContactController::class, 'login']);
+Route::post('/logout', [ContactController::class, '']);
+Route::post('/weight_logs/{:weightLogId}/delete', [ContactController::class, 'destroy']);
+
