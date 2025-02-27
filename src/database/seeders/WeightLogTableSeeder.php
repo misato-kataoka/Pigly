@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\WeightLog;
 
-class WeightLogsTableSeeder extends Seeder
+class WeightLogTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +14,6 @@ class WeightLogsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        WeightLog::factory()->count(35)->create();
     }
 }

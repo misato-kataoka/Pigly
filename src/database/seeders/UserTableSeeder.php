@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\User;
 
 class UserTableSeeder extends Seeder
 {
@@ -13,6 +14,10 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        User::factory()->create([
+            'name' => 'テストユーザー',
+            'email' => 'testuser@example.com',
+            'password' => bcrypt('password'),
+        ]);
     }
 }
