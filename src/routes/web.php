@@ -15,7 +15,7 @@ use App\Http\Controllers\ContactController;
 */
 
 Route::get('/register/step1', [ContactController::class, 'index']);
-Route::get('/register/step2', [ContactController::class, 'create']);
+Route::post('/register/step2', [ContactController::class, 'create']);
 Route::post('/weight_logs', [ContactController::class, 'register']);
 Route::get('/login', [ContactController::class, 'login']);
 Route::post('/logout', [ContactController::class, '']);

@@ -12,7 +12,7 @@
             <h1>PiGLy</h1>
             <h2>新規会員登録</h2>
             <p>STEP1 アカウント情報の登録</p>
-            <form action="/register/step2" method="GET">
+            <form action="/register/step2" method="POST">
                 @csrf
                 <label for="name">お名前</label>
                 <input type="text" id="name" name="name" placeholder="名前を入力">
