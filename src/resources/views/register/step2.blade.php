@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/step1.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/step2.css') }}">
     <title>新規会員登録</title>
 </head>
 <body>
     <div class="container">
         <div class="form-container">
-            <h1>PiGLy</h1>
+            <a href="/register/step1" style="text-decoration: none; color: inherit;">
+                <h1>PiGLy</h1>
+            </a>
             <h2>新規会員登録</h2>
             <p>STEP2 体重データの入力</p>
             <form action="/weight_logs" method="POST">
                 @csrf
                 <label for="weight">現在の体重</label>
-                <input type="number" id="weight" name="weight" placeholder="現在の体重を入力">kg
+                <input type="text" id="weight" name="weight" placeholder="現在の体重を入力">kg
                     <p class="weight__error-message">
                     @error('weight')
                     {{ $message }}
@@ -23,7 +25,7 @@
                     </p>
 
                 <label for="target-weight">目標の体重</label>
-                <input type="number" id="target-weight" name="target-weight" placeholder="目標の体重を入力">kg
+                <input type="text" id="target-weight" name="target-weight" placeholder="目標の体重を入力">kg
                     <p class="weight__error-message">
                     @error('target-weight')
                     {{ $message }}
