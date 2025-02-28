@@ -8,7 +8,7 @@ use App\Models\WeightLog;
 
 class ContactController extends Controller
 {
-    public function index (ContactRequest $request)
+    public function index ()
     {
         return view('register.step1');
     }

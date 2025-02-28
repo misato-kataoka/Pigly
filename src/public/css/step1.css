@@ -35,6 +35,12 @@ h2 {
     margin: 10px 0;
 }
 
+h1,
+h2 {
+    font-family: 'Noto Serif JP', serif;
+    /* Google Fontsからインポートしたフォントを指定 */
+}
+
 label {
     display: block;
     text-align: left;
@@ -53,6 +59,9 @@ input {
 }
 
 .register__error-message {
+    display: block;
+    text-align: left;
+    margin-left: 40px;
     color: red;
     margin-top: 5px;
 }

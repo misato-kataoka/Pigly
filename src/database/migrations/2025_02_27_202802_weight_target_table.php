@@ -18,6 +18,8 @@ class WeightTargetTable extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->decimal('target_weight',4,1);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

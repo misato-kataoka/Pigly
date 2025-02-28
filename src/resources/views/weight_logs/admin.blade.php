@@ -15,19 +15,20 @@
                 <button class="logout-button">ログアウト</button>
             </div>
         </header>
+        <div class="header-underline"></div>
 
         <div class="goal-info">
             <div class="goal-weight">
                 <span>目標体重</span>
-                <span>40.0 kg</span>
+                <span>{{ $weightTarget ? $weightTarget->target_weight : '設定なし' }} kg<</span>
             </div>
             <div class="goal-difference">
                 <span>目標まで</span>
-                <span>-1.5 kg</span>
+                <span>{{ $weightTarget ? ($weightTarget->target_weight - $currentWeight) : '設定なし' }} kg</span>
             </div>
             <div class="latest-weight">
                 <span>最新体重</span>
-                <span>46.5 kg</span>
+                <span>{{ $latestWeight }} kg</span>
             </div>
         </div>
 
@@ -67,13 +68,22 @@
 
         <div class="pagination">
             <a href="{{ $weightLogs->previousPageUrl() }}" class="prev-button">&lt;</a>
-                @foreach ($weightLogs->getUrlRange(1, $weightLogs->lastPage()) as $page => $url)
-                @if ($page == $weightLogs->currentPage())
-                <span class="active">{{ $page }}</span>
+
+            @php
+                $currentPage = $weightLogs->currentPage();
+                $lastPage = $weightLogs->lastPage();
+                $startPage = max(1, $currentPage - 1); // 現在のページの1つ前から表示
+                $endPage = min($lastPage, $currentPage + 2); // 現在のページの1つ後まで表示
+            @endphp
+
+            @for ($page = $startPage; $page <= $endPage; $page++)
+                @if ($page == $currentPage)
+                    <span class="active">{{ $page }}</span>
                 @else
-                <a href="{{ $url }}">{{ $page }}</a>
+                    <a href="{{ $weightLogs->url($page) }}">{{ $page }}</a>
                 @endif
-                @endforeach
+            @endfor
+
             <a href="{{ $weightLogs->nextPageUrl() }}" class="next-button">&gt;</a>
         </div>
 
