@@ -53,6 +53,9 @@ input {
 }
 
 .login__error-message {
+    display: block;
+    text-align: left;
+    margin-left: 40px;
     color: red;
     margin-top: 5px;
 }
@@ -60,7 +63,7 @@ input {
 button {
     background: linear-gradient(to right, #a3a6e1, #f7acda);
     color: white;
-    padding: 30px;
+    padding: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
