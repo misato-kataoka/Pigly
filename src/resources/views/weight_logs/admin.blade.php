@@ -4,15 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
-    <title>PiGLy</title>
+    <title>PiGLy 管理画面</title>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>PiGLy</h1>
             <div class="header-buttons">
-                <button class="settings-button">目標体重設定</button>
-                <button class="logout-button">ログアウト</button>
+                <button class="settings-button" onclick="location.href='{{ route('goal.setting') }}'">目標体重設定</button>
+                <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                    @csrf
+                    <button type="submit" class="logout-button">ログアウト</button>
+                </form>
             </div>
         </header>
         <div class="header-underline"></div>
@@ -33,14 +36,22 @@
         </div>
 
         <div class="search-section">
-            <select>
-                <option>年/月/日</option>
-            </select>
-            <span>～</span>
-            <select>
-                <option>年/月/日</option>
-            </select>
-            <button class="search-button">検索</button>
+            <form action="{{ route('weight_logs.search') }}" method="GET">
+                <select name="start_date">
+                    <option value="">開始日</option>
+                    @foreach ($dates as $date)
+                        <option value="{{ $date }}">{{ $date }}</option>
+                    @endforeach
+                </select>
+                <span>～</span>
+                <select name="end_date">
+                    <option value="">終了日</option>
+                    @foreach ($dates as $date)
+                        <option value="{{ $date }}">{{ $date }}</option>
+                    @endforeach
+                </select>
+                <button type="submit" class="search-button">検索</button>
+            </form>
         </div>
 
         <table>
@@ -60,7 +71,9 @@
                     <td>{{ $log->weight }}kg</td>
                     <td>{{ $log->calories }}cal</td>
                     <td>{{ $log->exercise_time }}</td>
-                    <td><button class="edit-button">✎</button></td>
+                    <td>
+                        <button class="edit-button" onclick="location.href='{{ route('weight_logs.edit', $log->id) }}'">✎</button> <!-- 編集ボタン -->
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
@@ -87,7 +100,7 @@
             <a href="{{ $weightLogs->nextPageUrl() }}" class="next-button">&gt;</a>
         </div>
 
-        <button class="add-data-button">データ追加</button>
+        <button class="add-data-button" onclick="location.href='{{ route('weight_logs.create') }}'">データ追加</button> <!-- データ追加へのリンク -->  
     </div>
 </body>
 </html>
